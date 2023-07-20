@@ -1,17 +1,23 @@
-//Write your code here
-class API {
-    constructor(url) {
-        this.url = url;
-        this.arr = this.url.split("://"); 
-        this.secure = this.arr[0] === "https";
+class API{
+    #secure;
+    url;
+    method;
+    constructor(url){
+        this.url=url;
+        if(url.includes("https")) this.#secure=true;
+        else this.#secure=false;
+        this.method="GET"
     }
-
-    isSecure() {
-        return this.arr[0] === "https";
+    isSecure(){
+        return this.#secure;
+    }
+    updateUrl(url){
+        this.url=url
+        if(url.includes("https"))
+        this.#secure=true;
+        else
+        this.#secure=false;
     }
 }
 
-
-
-//Do not remove this code
 module.exports = { API }
